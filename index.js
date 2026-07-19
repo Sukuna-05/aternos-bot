@@ -16,7 +16,7 @@ function createBot() {
         host: 'BlitzKreig.aternos.me', 
         port: 12185,                       
         username: 'AFK_Bot_247',
-        version: '1.21.1' // Kept at base protocol layer (handles 1.21.11 strings natively)                 
+        version: '1.21.11' // Kept at base protocol layer (handles 1.21.11 strings natively)                 
     });
 
     bot.on('spawn', () => {
