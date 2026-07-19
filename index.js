@@ -1,26 +1,24 @@
 const mineflayer = require('mineflayer');
 const http = require('http');
 
-// Free Web Service port checker bypass
 const server = http.createServer((req, res) => {
     res.writeHead(200, { 'Content-Type': 'text/plain' });
-    res.end('Bot engine status: Online\n');
+    res.end('Online\n');
 });
+
 const PORT = process.env.PORT || 10000;
-server.listen(PORT, () => {
-    console.log(`Fake web server active on port ${PORT}`);
-});
+server.listen(PORT);
 
 function createBot() {
     const bot = mineflayer.createBot({
         host: 'BlitzKreig.aternos.me', 
         port: 12185,                       
         username: 'AFK_Bot_247',
-        version: '1.21.11' // Kept at base protocol layer (handles 1.21.11 strings natively)                 
+        version: '1.21.11'                  
     });
 
     bot.on('spawn', () => {
-        console.log('Bot successfully spawned in the BlitzKreig server.');
+        console.log('Bot spawned successfully.');
         setInterval(() => {
             bot.setControlState('jump', true);
             setTimeout(() => bot.setControlState('jump', false), 500);
@@ -28,12 +26,12 @@ function createBot() {
     });
 
     bot.on('end', () => {
-        console.log('Disconnected from BlitzKreig. Reconnecting in 30 seconds...');
         setTimeout(() => createBot(), 30000);
     });
 
-    bot.on('error', (err) => console.log(`Network Error: ${err}`));
+    bot.on('error', (err) => {
+        console.log(`Error: ${err.message}`);
+    });
 }
 
 createBot();
-                
