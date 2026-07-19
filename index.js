@@ -1,15 +1,4 @@
 const mineflayer = require('mineflayer');
-const http = require('http');
-
-// Dummy web server to satisfy Render's port requirement
-const server = http.createServer((req, res) => {
-    res.writeHead(200, { 'Content-Type': 'text/plain' });
-    res.end('Bot is running online!\n');
-});
-const PORT = process.env.PORT || 10000;
-server.listen(PORT, () => {
-    console.log(`Dummy server listening on port ${PORT} to bypass Render scanner.`);
-});
 
 function createBot() {
     const bot = mineflayer.createBot({
@@ -36,4 +25,3 @@ function createBot() {
 }
 
 createBot();
-           
