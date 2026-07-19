@@ -1,7 +1,7 @@
 const mineflayer = require('mineflayer');
 const http = require('http');
 
-// This keeps Render's Free Web Service happy by opening port 10000
+// Free Web Service port checker bypass
 const server = http.createServer((req, res) => {
     res.writeHead(200, { 'Content-Type': 'text/plain' });
     res.end('Bot engine status: Online\n');
@@ -16,7 +16,7 @@ function createBot() {
         host: 'BlitzKreig.aternos.me', 
         port: 12185,                       
         username: 'AFK_Bot_247',
-        version: '1.21.1'                  
+        version: '1.21.1' // Kept at base protocol layer (handles 1.21.11 strings natively)                 
     });
 
     bot.on('spawn', () => {
@@ -36,3 +36,4 @@ function createBot() {
 }
 
 createBot();
+                
